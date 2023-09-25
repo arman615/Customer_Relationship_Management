@@ -32,4 +32,75 @@ void CRMSystem::recordComplaint(const Complaint &complaint) {
 }
 
 void CRMSystem::generateReport(const std::string &customerName) {
-    for (const
+    for (const Customer &customer: customers) {
+        if (customer.getName() == customerName) {
+            std::cout << "Customer Details:\n";
+            std::cout << "Name: " << customer.getName() << std::endl;
+            std::cout << "Contact Info: " << customer.getContactInfo() << std::endl;
+            std::cout << "Interaction History:\n";
+
+            // Sales
+            for (const Sale &sale: sales) {
+                if (sale.getUser() == customerName) {
+                    std::cout << "Sale - Date: " << sale.getDate() << ", Amount: $" << sale.getAmount()
+                              << ", Warranty Period: " << sale.getWarrantyPeriod() << " months" << std::endl;
+                }
+            }
+
+            // Warranty Services
+            for (const WarrantyService &warrantyService: warrantyServices) {
+                if (warrantyService.getUser() == customerName) {
+                    std::cout << "Warranty Service - Sale Date: " << warrantyService.getSale().getDate()
+                              << ", Service Cost: $" << warrantyService.getServiceCost() << std::endl;
+                }
+            }
+
+            // Complaints
+            for (const Complaint &complaint: complaints) {
+                if (complaint.getUser() == customerName) {
+                    std::cout << "Complaint - Sale Date: " << complaint.getSale().getDate()
+                              << ", Description: " << complaint.getDescription() << std::endl;
+                }
+            }
+
+            return;
+        }
+    }
+    std::cout << "Customer \"" << customerName << "\" not found.\n";
+}
+
+void CRMSystem::generateAndSaveReportToFile(const std::string &customerName) {
+    for (const Customer &customer: customers) {
+        if (customer.getName() == customerName) {
+            std::string report = "Customer Details:\n";
+            report += "Name: " + customer.getName() + "\n";
+            report += "Contact Info: " + customer.getContactInfo() + "\n";
+            report += "Interaction History:\n";
+
+            for (const Sale &sale: sales) {
+                if (sale.getUser() == customerName) {
+                    report += "Sale - Date: " + sale.getDate() + ", Amount: $" + std::to_string(sale.getAmount())
+                              + ", Warranty Period: " + std::to_string(sale.getWarrantyPeriod()) + " months\n";
+                }
+            }
+
+            for (const WarrantyService &warrantyService: warrantyServices) {
+                if (warrantyService.getUser() == customerName) {
+                    report += "Warranty Service - Sale Date: " + warrantyService.getSale().getDate()
+                              + ", Service Cost: $" + std::to_string(warrantyService.getServiceCost()) + "\n";
+                }
+            }
+
+            for (const Complaint &complaint: complaints) {
+                if (complaint.getUser() == customerName) {
+                    report += "Complaint - Sale Date: " + complaint.getSale().getDate()
+                              + ", Description: " + complaint.getDescription() + "\n";
+                }
+            }
+
+            saveReportToFile(customer, report);
+            return;
+        }
+    }
+    std::cout << "Customer \"" << customerName << "\" not found.\n";
+}
