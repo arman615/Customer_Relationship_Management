@@ -1,4 +1,4 @@
-# Customer_Relationship_Management
+# Customer Relationship Management
 
 The CRM (Customer Relationship Management) System is a C++ application that helps manage customer interactions, sales, warranty services, and complaints. 
 This system provides a convenient way to register customers, record sales, warranty services, and complaints, generate reports, and save reports to files.
