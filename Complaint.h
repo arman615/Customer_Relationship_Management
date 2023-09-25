@@ -1,17 +1,20 @@
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
+#ifndef COMPLAINT_H
+#define COMPLAINT_H
 
+#include "Sale.h"
 #include <string>
 
-class Customer {
+class Complaint {
 private:
-    std::string name;
-    std::string contactInfo;
+    Sale sale;
+    std::string user;
+    std::string description;
 
 public:
-    Customer(const std::string &name, const std::string &contactInfo);
-    const std::string &getName() const;
-    const std::string &getContactInfo() const;
+    Complaint(const Sale &sale, const std::string &user, const std::string &description);
+    const Sale &getSale() const;
+    const std::string &getUser() const;
+    const std::string &getDescription() const;
 };
 
-#endif // CUSTOMER_H
+#endif // COMPLAINT_H
