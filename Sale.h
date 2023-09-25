@@ -11,9 +11,9 @@ private:
     int warrantyPeriod;
 
 public:
-    Sale(const std::string& date, const std::string& user, double amount, int warrantyPeriod);
-    const std::string& getDate() const;
-    const std::string& getUser() const;
+    Sale(const std::string &date, const std::string &user, double amount, int warrantyPeriod);
+    const std::string &getDate() const;
+    const std::string &getUser() const;
     double getAmount() const;
     int getWarrantyPeriod() const;
 };
