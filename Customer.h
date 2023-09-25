@@ -9,9 +9,9 @@ private:
     std::string contactInfo;
 
 public:
-    Customer(const std::string& name, const std::string& contactInfo);
-    const std::string& getName() const;
-    const std::string& getContactInfo() const;
+    Customer(const std::string &name, const std::string &contactInfo);
+    const std::string &getName() const;
+    const std::string &getContactInfo() const;
 };
 
 #endif // CUSTOMER_H
